@@ -17,6 +17,7 @@ export default function ProductCard({
         <img
           src={img ?? 'testImg.jpg'}
           alt={title}
+          loading='lazy'
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
         />
       </div>
