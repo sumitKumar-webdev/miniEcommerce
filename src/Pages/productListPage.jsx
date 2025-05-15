@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../Component/productCard'
 import { useNavigate } from 'react-router-dom'
+import Loader from '../Component/Loader'
 
 export default function ProductListPage() {
     const [products, setProducts] =useState([])
+      const [loading, setLoading ] = useState(false)
     const navigate = useNavigate()
 
 
     useEffect(()=>{
-      // dont run if therse is already products in state
-      if( products.length >0) return;
 
         const fetchProducts = async () => {
+          setLoading(true)
           try {
              const response = await fetch('https://fakestoreapi.com/products')
 
@@ -27,22 +28,31 @@ export default function ProductListPage() {
             console.log(error);
             
           }
+          setLoading(false)
         }
           fetchProducts()
         
           
            
     },[])
-  
+
+  if (loading) {
+    return (
+    <div className='h-screen w-full flex justify-center items-center'>
+      <Loader />
+      </div>
+      
+    )
+  }
     
   return (
     <div className='px-24 py-5 mb-20'>
-      <h2 className='text-white text-center text-3xl font-bold tracking-widest'>All Our Products</h2>
+      <h2 className='text-white text-center lg:text-3xl md:text-2xl text-lg font-bold tracking-widest'>All Our Products</h2>
 
       {/* All products in grid */}
-      <div className='grid lg:grid-cols-4 md:grid-col-3 sm:grid-cols-2 mt-10 lg:gap-5 md:gap-7 sm:gap-10'>
+      <div className='grid lg:grid-cols-4 md:grid-col-3 sm:grid-cols-2 mt-10 lg:gap-5 md:gap-7 sm:gap-10 place-items-center place-content-center'>
         {products.map((data, index)=>(
-          <div key={index} onClick={()=>navigate(`product/${data.id}`)}>
+          <div key={index}  onClick={()=>navigate(`product/${data.id}`)}>
         <ProductCard 
         title={data.title}
         img = {data.image}

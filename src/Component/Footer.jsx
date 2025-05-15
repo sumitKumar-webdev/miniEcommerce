@@ -6,7 +6,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-2">About Us</h3>
           <p>
-            A brief description about your company. Reliable services with quality assurance.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa vitae quo illum accusantium id dicta asperiores harum, saepe odio deleniti debitis delectus. Quibusdam sequi quo possimus at temporibus aut necessitatibus.
           </p>
         </div>
 
@@ -30,7 +30,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-xs text-gray-500 mt-6">
-        © {new Date().getFullYear()} YourBrand. All rights reserved.
+        © {new Date().getFullYear()} Name. All rights reserved.
       </div>
     </footer>
   );

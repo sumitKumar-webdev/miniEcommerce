@@ -9,7 +9,7 @@ export default function Header() {
 
   
   return (
-    <header className="bg-blue-600 text-white shadow-md sticky top-0 z-50">
+    <header className="bg-blue-600 text-white shadow-md sticky w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <div onClick={()=>navigate('/')} className="text-2xl cursor-pointer font-bold tracking-wide">
@@ -25,7 +25,7 @@ export default function Header() {
         </nav>
         
         {/* cart Icon */}
-        <div className="flex gap-1 items-center relative group cursor-pointer">
+        <div onClick={()=>navigate('/cart')} className="flex gap-1 items-center relative group cursor-pointer">
           <ShoppingBag size={25} className="group-hover:text-[#bdccff] transition-colors" />
           <span className="group-hover:text-[#bdccff]">Cart</span>
 

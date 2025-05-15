@@ -11,7 +11,7 @@ export default function ProductCard({
 }) {
   return (
     // Container
-    <div className={`w-72 min-h-[350px] p-2 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ${className}`}>
+    <div className={`w-72 lg:min-h-[380px] mt-5 p-2 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ${className}`}>
       {/* Image Section */}
       <div className="h-52 overflow-hidden group">
         <img
