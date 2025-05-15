@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../Component/productCard'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProductListPage() {
     const [products, setProducts] =useState([])
+    const navigate = useNavigate()
 
 
     useEffect(()=>{
@@ -40,7 +42,7 @@ export default function ProductListPage() {
       {/* All products in grid */}
       <div className='grid lg:grid-cols-4 md:grid-col-3 sm:grid-cols-2 mt-10 lg:gap-5 md:gap-7 sm:gap-10'>
         {products.map((data, index)=>(
-          <div key={index} className=''>
+          <div key={index} onClick={()=>navigate(`product/${data.id}`)}>
         <ProductCard 
         title={data.title}
         img = {data.image}

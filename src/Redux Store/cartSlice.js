@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-
+import { cartDatafromLS } from "../LocalStorage/cartLoacalStorage";
+const initialState = cartDatafromLS() || {
+     products : [],
+     totalPrice : 0,
+     totalProducts : 0
+}
 
 const cartSlice = createSlice({
     name: 'cart',
-    initialState : {
-        products : [],
-        totalPrice : 0,
-        totalProducts : 0
-    },
+   initialState,
     reducers:{
         addToCart : (state, action) => {
             const newPro = action.payload;
@@ -31,7 +31,7 @@ const cartSlice = createSlice({
             if (existingPro) {
                 state.totalPrice -= (existingPro.price)*(existingPro.quantity) 
                 state.totalProducts -= existingPro.quantity
-                state.products = state.products.filter((product)=> product.id != existingPro.id )
+                state.products = state.products.filter((product)=> product.id !== existingPro.id )
                 }
         },
         incQnty : (state,action) =>{

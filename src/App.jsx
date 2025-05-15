@@ -7,18 +7,20 @@ import Footer from './Component/Footer'
 import ProductListPage from './Pages/productListPage';
 import ProductDetailsPage from './Pages/ProductDetailsPage'
 import CartPage from './Pages/CartPage'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
 
   return (
-   <>
-   <Header />
-   {/* <ProductListPage/> */}
-   {/* <ProductDetailsPage /> */}
-   <CartPage />
-   <Footer />
-   </>
+  <div className='flex flex-col min-h-screen'>
+    <Header />
+    <main className='flex-grow'>
+      <Outlet />
+    </main>
+    <Footer />
+  </div> 
+   
   )
 }
 

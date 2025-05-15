@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StarRating from '../Component/StarRating';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../Redux Store/cartSlice';
+import { useParams } from 'react-router-dom';
+import { newProduct } from '../Redux Store/productSlice';
 
 export default function ProductDetailsPage() {
+  const { id } = useParams()
   const [productDetails, setProductDetails] = useState();
   const dispatch = useDispatch();
   const product = useSelector((state)=>state.product.product)
-  // ADD CHECK IF PRODUCT DETAILS AVAILABLE IN STORE DONT FETCH PRODUCT FROM API AGAIN
+
+
+  useEffect( async ()=>{
+    try {
+       if (productDetails?.id === id) return;
+      const response = await fetch(`https://fakestoreapi.com/products${id}`)
+              if (!response) {
+                 console.log('Error in Fetching data from Api');
+                 return                
+              }
+      const Data = await response.json()
+      dispatch(newProduct(Data))
+      setProductDetails(Data)
+    } catch (error) {
+      console.error(error)
+    }
+   
+  },[id])
+  
 
   const testObj = {
     id: 1,

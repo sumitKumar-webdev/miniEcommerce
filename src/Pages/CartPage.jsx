@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decQnty, incQnty } from "../Redux Store/cartSlice";
+import { decQnty, incQnty, removeFromCart } from "../Redux Store/cartSlice";
 
 const sampleCart = [
   {
@@ -91,7 +91,7 @@ export default function CartPage() {
            </div>
           <div className="flex flex-col items-end">
             <button
-              onClick={() => removeItem(item.id)}
+              onClick={() => dispatch(removeFromCart(item))}
               className="text-red-500 mt-2"
             >
               Remove

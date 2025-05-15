@@ -1,15 +1,24 @@
 
 // fetching Cart Data from local storage 
-const cartDatafromLS = () =>{
-const data = localStorage.getItem('cartItems')
-if (data) {
-    return JSON.parse(data)
-}
-return undefined
+export const cartDatafromLS = () =>{
+    try {
+     const data = localStorage.getItem('cartItems')
+        if (data) { 
+            return JSON.parse(data)
+            }
+        return null
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 //saving data in local storage
-const saveDatatoLS = (state) =>{
-    const cartData = JSON.stringify(state);
-    localStorage.setItem('cartItem', cartData)
+export const saveDatatoLS = (state) =>{
+    try {
+        const cartData = JSON.stringify(state);
+    localStorage.setItem('cartItems', cartData)
+    } catch (error) {
+         console.error(error)
+    }
+    
 }
