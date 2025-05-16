@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from '../Component/productCard'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../Component/Loader'
+import { motion } from "framer-motion"
 
 export default function ProductListPage() {
     const [products, setProducts] =useState([])
@@ -52,7 +53,23 @@ export default function ProductListPage() {
       {/* All products in grid */}
       <div className='grid lg:grid-cols-4 md:grid-col-3 sm:grid-cols-2 mt-10 lg:gap-5 md:gap-7 sm:gap-10 place-items-center place-content-center'>
         {products.map((data, index)=>(
-          <div key={index}  onClick={()=>navigate(`product/${data.id}`)}>
+          <motion.div
+          initial={{
+            y:50,
+            opacity: 0,
+          }}
+          whileInView={{
+            y: 0,
+            opacity:1,
+             }} 
+             transition={{
+              delay: `${index*0.1}`,
+             }}
+             viewport={{
+              once: true
+             }}
+          key={index}
+          onClick={()=>navigate(`product/${data.id}`)}>
         <ProductCard 
         title={data.title}
         img = {data.image}
@@ -60,7 +77,7 @@ export default function ProductListPage() {
         rCount = {data.rating.count}
         rating = { data.rating.rate}
                    />
-          </div>
+          </motion.div>
         ))}
       </div>
 

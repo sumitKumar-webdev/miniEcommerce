@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../Redux Store/cartSlice';
 import { useParams } from 'react-router-dom';
 import Loader from '../Component/Loader';
-import { div } from 'motion/react-client';
+import { motion } from "framer-motion";
 
 
 export default function ProductDetailsPage() {
@@ -50,16 +50,18 @@ if (loading) {
   return (
     <div className="text-white lg:px-24 md:px-16 sm:px-10 px-5 py-10 flex flex-col md:flex-row gap-10">
       {/* Image Section */}
-      <div className="flex-1 bg-white rounded-xl p-5">
+      <motion.div
+      initial={{x:-50, opacity:0}} animate={{x:0, opacity:1}} transition={{duration:0.2}}
+       className="flex-1 bg-white rounded-xl p-5">
         <img
           src={productDetails?.image}
           alt={productDetails?.title}
           className="w-full h-[400px] object-contain"
         />
-      </div>
+      </motion.div>
 
       {/* Details Section */}
-      <div className="flex-1 bg-slate-800 rounded-xl p-6 flex flex-col justify-between">
+      <motion.div initial={{opacity:0, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.2}} className="flex-1 bg-slate-800 rounded-xl p-6 flex flex-col justify-between">
         <div>
           <h2 className="text-2xl font-bold mb-2">{productDetails?.title}</h2>
           <p className="text-lg font-semibold text-yellow-300 mb-2">
@@ -79,7 +81,7 @@ if (loading) {
          className="mt-6 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded-full transition duration-300 ease-in-out w-full">
           Add to Cart
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 }
